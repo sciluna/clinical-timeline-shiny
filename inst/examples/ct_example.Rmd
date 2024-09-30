@@ -1,0 +1,93 @@
+---
+title: "clinical timeline example"
+output: html_document
+---
+
+```{r}
+## Comprehensive example
+library(jsonlite)
+library(clinicalTimeline)
+
+data <- fromJSON("data1.json")
+json_data <- toJSON(data, auto_unbox = TRUE)
+orderAllTooltipTables <- list("Source", "Location")
+plugins <- list(list(obj = "trimClinicalTimeline", enabled = TRUE), list(obj = "clinicalTimelineHelperLines", enabled = TRUE), list(obj = "clinicalTimelineOverviewAxis", enabled = TRUE), list(obj = "clinicalTimelineVerticalLine", hoverBegin = 200, hoverEnd = 770, enabled = TRUE), list(obj = "clinicalTimelineZoom", enabled = TRUE))
+sizeByClinicalAttribute <- list(list("PSA", "Result"), list("Phos", "Result"))
+splitByClinicalAttributes <- list(list("Surgery", "Location"), list("Test", "Type"), list("TreatmentType", list("TREATMENT_TYPE", "AGENT")), list("TreatmentTypeStuff", list("TREATMENT_TYPE", "STUFF")))
+
+clinicalTimeline(data = json_data, width = 1000, enableTrackTooltips = TRUE, orderAllTooltipTables = orderAllTooltipTables, plugins = plugins, sizeByClinicalAttribute = sizeByClinicalAttribute, splitByClinicalAttributes = splitByClinicalAttributes)
+```
+
+```{r}
+## Basic timeline with circular and rectangular elements
+library(jsonlite)
+library(clinicalTimeline)
+
+data <- fromJSON("data2.json")
+json_data <- toJSON(data, auto_unbox = TRUE)
+orderAllTooltipTables <- list("Source", "Location")
+sizeByClinicalAttribute <- list(list("PSA", "Result"), list("Phos", "Result"))
+splitByClinicalAttributes <- list(list("Surgery", "Location"), list("Test", "Type"), list("TreatmentType", list("TREATMENT_TYPE", "AGENT")), list("TreatmentTypeStuff", list("TREATMENT_TYPE", "STUFF")))
+
+clinicalTimeline(data = json_data, width = 800, enableTrackTooltips = TRUE, orderAllTooltipTables = orderAllTooltipTables, sizeByClinicalAttribute = sizeByClinicalAttribute, splitByClinicalAttributes = splitByClinicalAttributes)
+```
+
+```{r}
+## Trimming off areas with no activity
+library(jsonlite)
+library(clinicalTimeline)
+
+data <- fromJSON("data2.json")
+json_data <- toJSON(data, auto_unbox = TRUE)
+orderAllTooltipTables <- list("Source", "Location")
+plugins <- list(list(obj = "trimClinicalTimeline", enabled = TRUE))
+sizeByClinicalAttribute <- list(list("PSA", "Result"), list("Phos", "Result"))
+splitByClinicalAttributes <- list(list("Surgery", "Location"), list("Test", "Type"), list("TreatmentType", list("TREATMENT_TYPE", "AGENT")), list("TreatmentTypeStuff", list("TREATMENT_TYPE", "STUFF")))
+
+clinicalTimeline(data = json_data, width = 800, enableTrackTooltips = TRUE, orderAllTooltipTables = orderAllTooltipTables, plugins = plugins, sizeByClinicalAttribute = sizeByClinicalAttribute, splitByClinicalAttributes = splitByClinicalAttributes)
+```
+
+```{r}
+## Vertical hover-line
+library(jsonlite)
+library(clinicalTimeline)
+
+data <- fromJSON("data3.json")
+json_data <- toJSON(data, auto_unbox = TRUE)
+orderAllTooltipTables <- list("Source", "Location")
+plugins <- list(list(obj = "clinicalTimelineVerticalLine", hoverBegin = 200, hoverEnd = 770, enabled = TRUE))
+sizeByClinicalAttribute <- list(list("PSA", "Result"), list("Phos", "Result"))
+splitByClinicalAttributes <- list(list("Surgery", "Location"), list("Test", "Type"), list("TreatmentType", list("TREATMENT_TYPE", "AGENT")), list("TreatmentTypeStuff", list("TREATMENT_TYPE", "STUFF")))
+
+clinicalTimeline(data = json_data, width = 800, enableTrackTooltips = TRUE, orderAllTooltipTables = orderAllTooltipTables, plugins = plugins, sizeByClinicalAttribute = sizeByClinicalAttribute, splitByClinicalAttributes = splitByClinicalAttributes)
+```
+
+```{r}
+## Helper Lines
+library(jsonlite)
+library(clinicalTimeline)
+
+data <- fromJSON("data1.json")
+json_data <- toJSON(data, auto_unbox = TRUE)
+orderAllTooltipTables <- list("Source", "Location")
+plugins <- list(list(obj = "clinicalTimelineHelperLines", enabled = TRUE))
+sizeByClinicalAttribute <- list(list("PSA", "Result"), list("Phos", "Result"))
+splitByClinicalAttributes <- list(list("Surgery", "Location"), list("Test", "Type"), list("TreatmentType", list("TREATMENT_TYPE", "AGENT")), list("TreatmentTypeStuff", list("TREATMENT_TYPE", "STUFF")))
+
+clinicalTimeline(data = json_data, width = 800, enableTrackTooltips = TRUE, orderAllTooltipTables = orderAllTooltipTables, plugins = plugins, sizeByClinicalAttribute = sizeByClinicalAttribute, splitByClinicalAttributes = splitByClinicalAttributes)
+```
+
+```{r}
+## Zoom with overview-axis
+library(jsonlite)
+library(clinicalTimeline)
+
+data <- fromJSON("data1.json")
+json_data <- toJSON(data, auto_unbox = TRUE)
+orderAllTooltipTables <- list("Source", "Location")
+plugins <- list(list(obj = "clinicalTimelineZoom", enabled = TRUE), list(obj = "clinicalTimelineOverviewAxis", enabled = TRUE))
+sizeByClinicalAttribute <- list(list("PSA", "Result"), list("Phos", "Result"))
+splitByClinicalAttributes <- list(list("Surgery", "Location"), list("Test", "Type"), list("TreatmentType", list("TREATMENT_TYPE", "AGENT")), list("TreatmentTypeStuff", list("TREATMENT_TYPE", "STUFF")))
+
+clinicalTimeline(data = json_data, width = 800, enableTrackTooltips = TRUE, orderAllTooltipTables = orderAllTooltipTables, plugins = plugins, sizeByClinicalAttribute = sizeByClinicalAttribute, splitByClinicalAttributes = splitByClinicalAttributes)
+```

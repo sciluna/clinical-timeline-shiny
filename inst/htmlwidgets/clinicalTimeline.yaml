@@ -1,0 +1,14 @@
+dependencies:
+  - name: clinical-timeline
+    version: 0.0.30
+    src: htmlwidgets/lib/clinical-timeline-0.0.30
+    script:
+      - lib/jquery-latest.min.js
+      - lib/jquery.dataTables.min.js
+      - lib/jquery.qtip.min.js
+      - lib/underscore-min.js
+      - lib/d3.v3.min.js
+      - clinical-timeline.min.js
+    stylesheet:
+      - css/dataTables.tableTools.min.css
+      - css/jquery.qtip.min.css
